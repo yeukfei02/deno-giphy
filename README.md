@@ -3,7 +3,7 @@
 deno-giphy
 
 ## Requirement:
- - install deno
+ - install deno (0.42.0)
 
 ## Testing and run:
 ```

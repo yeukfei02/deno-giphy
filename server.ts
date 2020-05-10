@@ -1,8 +1,8 @@
 import { Application } from "https://deno.land/x/oak/mod.ts";
 
-import mainRouter from './src/routes/main.ts';
-import userRouter from './src/routes/user.ts';
-import giphyRouter from './src/routes/giphy.ts';
+import mainRouter from "./src/routes/main.ts";
+import userRouter from "./src/routes/user.ts";
+import giphyRouter from "./src/routes/giphy.ts";
 
 const app = new Application();
 

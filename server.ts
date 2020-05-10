@@ -7,14 +7,14 @@ import giphyRouter from "./src/routes/giphy.ts";
 const app = new Application();
 
 // logger
-app.use(async (context, next) => {
+app.use(async (context: any, next: any) => {
   await next();
   const rt = context.response.headers.get("X-Response-Time");
   console.log(`${context.request.method} ${context.request.url} - ${rt}`);
 });
 
 // request timing
-app.use(async (context, next) => {
+app.use(async (context: any, next: any) => {
   const start = Date.now();
   await next();
   const ms = Date.now() - start;

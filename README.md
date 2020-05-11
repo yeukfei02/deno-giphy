@@ -7,6 +7,9 @@ deno-giphy
 
 ## Testing and run:
 ```
+// install deps
+$ deno cache server.ts
+
 // run in local
 $ deno --allow-net server.ts
 

@@ -68,7 +68,7 @@ export const getGifById = async (context: any) => {
   }
 
   context.response.body = {
-    message: "get gif from id",
+    message: "get gif by id",
     result: result,
   };
 };

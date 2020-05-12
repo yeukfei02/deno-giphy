@@ -11,7 +11,7 @@ deno-giphy
 $ deno cache server.ts
 
 // run in local
-$ deno --allow-net server.ts
+$ deno --allow-net --allow-read server.ts
 
 // allow all permission
 $ deno -A server.ts

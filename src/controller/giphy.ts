@@ -1,4 +1,6 @@
-const GIPHY_API_KEY = "l3zCs4VG53GTOVfp3KNBNUaqV1B59Gaw";
+import { config } from "https://deno.land/x/dotenv/dotenv.ts";
+
+const GIPHY_API_KEY = config().GIPHY_API_KEY;
 
 export const searchGif = async (context: any) => {
   const urlSearchParams = new URLSearchParams(context.request.url.searchParams);

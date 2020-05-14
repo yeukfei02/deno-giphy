@@ -10,10 +10,11 @@ export const checkUserLogin = async (context: any) => {
     if (token) {
       const key = config().JWT_SECRET;
       const valid = await validateJwt(token, key, { isThrowing: false });
-      if (valid)
+      if (valid) {
         status = true;
+      }
     }
   }
 
   return status;
-}
+};

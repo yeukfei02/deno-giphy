@@ -6,6 +6,7 @@ import {
 } from "https://deno.land/x/djwt/create.ts";
 import { config } from "https://deno.land/x/dotenv/mod.ts";
 import { moment } from "https://deno.land/x/moment/moment.ts";
+import * as bcrypt from "https://deno.land/x/bcrypt/mod.ts";
 import {
   signupModel,
   getUserByEmailModel,
@@ -16,7 +17,7 @@ import { checkUserLogin } from "../common/common.ts";
 export const signup = async (context: any) => {
   const bodyData = await context.request.body();
   const email = bodyData.value.email;
-  const password = bodyData.value.password;
+  const password = bcrypt.hashpw(bodyData.value.password);
 
   if (email && password) {
     const user = await getUserByEmailModel(email);
@@ -50,7 +51,9 @@ export const login = async (context: any) => {
   if (email && password) {
     const user = await getUserByEmailModel(email);
     if (user) {
-      if (user.password === password) {
+      const hashedPasswordFromDB = user.password;
+      const comparePasswordStatus = bcrypt.checkpw(password, hashedPasswordFromDB);
+      if (comparePasswordStatus) {
         const token = await getToken(email, password);
 
         context.response.status = 200;

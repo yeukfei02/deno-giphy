@@ -1,0 +1,238 @@
+{
+	"info": {
+		"_postman_id": "55a5d70f-723c-47da-96ea-aa810848eb16",
+		"name": "deno-giphy",
+		"description": "deno-giphy",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "user",
+			"item": [
+				{
+					"name": "/signup",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"email\": \"test@email.com\",\n\t\"password\": \"test\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/api/user/signup",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"user",
+								"signup"
+							]
+						},
+						"description": "/signup"
+					},
+					"response": []
+				},
+				{
+					"name": "/login",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"email\": \"test@email.com\",\n\t\"password\": \"test\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/api/user/login",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"user",
+								"login"
+							]
+						},
+						"description": "/login"
+					},
+					"response": []
+				},
+				{
+					"name": "/user",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRlc3RAZW1haWwuY29tIiwicGFzc3dvcmQiOiJ0ZXN0IiwiZXhwIjoxNTg5NTM2ODQ0MDAwfQ.JM9Fv6AoNoXTanpnD3gYTMBcagfN6rTjBAC4K4C1s2s",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/api/user",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"user"
+							]
+						},
+						"description": "/user"
+					},
+					"response": []
+				}
+			],
+			"description": "user",
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "giphy",
+			"item": [
+				{
+					"name": "/search-gif",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRlc3RAZW1haWwuY29tIiwicGFzc3dvcmQiOiJ0ZXN0IiwiZXhwIjoxNTg5NTM2ODQ0MDAwfQ.JM9Fv6AoNoXTanpnD3gYTMBcagfN6rTjBAC4K4C1s2s",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "localhost:3000/api/giphy/search-gif?keyword=hong kong",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"giphy",
+								"search-gif"
+							],
+							"query": [
+								{
+									"key": "keyword",
+									"value": "hong kong"
+								}
+							]
+						},
+						"description": "/search-gif"
+					},
+					"response": []
+				},
+				{
+					"name": "/get-trending-gif",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRlc3RAZW1haWwuY29tIiwicGFzc3dvcmQiOiJ0ZXN0IiwiZXhwIjoxNTg5NTM2ODQ0MDAwfQ.JM9Fv6AoNoXTanpnD3gYTMBcagfN6rTjBAC4K4C1s2s",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "localhost:3000/api/giphy/get-trending-gif",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"giphy",
+								"get-trending-gif"
+							]
+						},
+						"description": "/get-trending-gif"
+					},
+					"response": []
+				},
+				{
+					"name": "/get-random-gif",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRlc3RAZW1haWwuY29tIiwicGFzc3dvcmQiOiJ0ZXN0IiwiZXhwIjoxNTg5NTM2ODQ0MDAwfQ.JM9Fv6AoNoXTanpnD3gYTMBcagfN6rTjBAC4K4C1s2s",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "localhost:3000/api/giphy/get-random-gif",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"giphy",
+								"get-random-gif"
+							]
+						},
+						"description": "/get-random-gif"
+					},
+					"response": []
+				},
+				{
+					"name": "/giphy/gif/{id}",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRlc3RAZW1haWwuY29tIiwicGFzc3dvcmQiOiJ0ZXN0IiwiZXhwIjoxNTg5NTM2ODQ0MDAwfQ.JM9Fv6AoNoXTanpnD3gYTMBcagfN6rTjBAC4K4C1s2s",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "localhost:3000/api/giphy/gif/W3OY4DShaylhQyPMMW",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"giphy",
+								"gif",
+								"W3OY4DShaylhQyPMMW"
+							]
+						},
+						"description": "/giphy/gif/{id}"
+					},
+					"response": []
+				}
+			],
+			"description": "giphy",
+			"protocolProfileBehavior": {}
+		}
+	],
+	"protocolProfileBehavior": {}
+}

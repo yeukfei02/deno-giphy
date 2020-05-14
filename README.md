@@ -3,7 +3,7 @@
 deno-giphy
 
 ## Requirement:
- - install deno (0.42.0)
+ - install deno (1.0.0)
 
 ## Testing and run:
 ```
@@ -11,10 +11,10 @@ deno-giphy
 $ deno cache server.ts
 
 // run in local
-$ deno --allow-net --allow-read server.ts
+$ deno run --allow-net --allow-read --allow-write --allow-plugin --unstable server.ts
 
 // allow all permission
-$ deno -A server.ts
+$ deno run -A server.ts
 
 // run test case
 $ deno test

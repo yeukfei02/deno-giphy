@@ -1,4 +1,4 @@
-import { config } from "https://deno.land/x/dotenv/dotenv.ts";
+import { config } from "https://deno.land/x/dotenv/mod.ts";
 
 const GIPHY_API_KEY = config().GIPHY_API_KEY;
 

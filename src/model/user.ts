@@ -7,7 +7,7 @@ export const signupModel = async (email: string, password: string) => {
   let result = "";
 
   if (email && password) {
-    await users.insertOne({
+    result = await users.insertOne({
       email: email,
       password: password,
     });

@@ -1,5 +1,17 @@
-import { signupModel, getUserByEmailModel, getAllUserModel } from '../model/user.ts';
-import { checkUserLogin } from '../common/common.ts';
+import {
+  makeJwt,
+  setExpiration,
+  Jose,
+  Payload,
+} from "https://deno.land/x/djwt/create.ts";
+import { config } from "https://deno.land/x/dotenv/mod.ts";
+import { moment } from "https://deno.land/x/moment/moment.ts";
+import {
+  signupModel,
+  getUserByEmailModel,
+  getAllUserModel,
+} from "../model/user.ts";
+import { checkUserLogin } from "../common/common.ts";
 
 export const signup = async (context: any) => {
   const bodyData = await context.request.body();
@@ -39,12 +51,12 @@ export const login = async (context: any) => {
     const user = await getUserByEmailModel(email);
     if (user) {
       if (user.password === password) {
-        const token = "";
+        const token = await getToken(email, password);
 
         context.response.status = 200;
         context.response.body = {
           message: "login",
-          token: token
+          token: token,
         };
       } else {
         context.response.status = 400;
@@ -79,7 +91,7 @@ export const getAllUser = async (context: any) => {
         const obj = {
           _id: _id,
           email: item.email,
-          password: item.password
+          password: item.password,
         };
         return obj;
       });
@@ -93,7 +105,26 @@ export const getAllUser = async (context: any) => {
   } else {
     context.response.status = 400;
     context.response.body = {
-      message: "missing bearer token",
+      message: "missing / invalid bearer token",
     };
   }
 };
+
+async function getToken(email: string, password: string) {
+  const key = config().JWT_SECRET;
+  const currentDate = moment().format();
+  const expireTimeMs = moment(currentDate).add(1, "days").valueOf();
+
+  const payload: Payload = {
+    email: email,
+    password: password,
+    exp: setExpiration(expireTimeMs),
+  };
+  const header: Jose = {
+    alg: "HS256",
+    typ: "JWT",
+  };
+
+  const token = makeJwt({ header, payload, key });
+  return token;
+}

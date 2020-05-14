@@ -9,4 +9,4 @@ const db = client.database("deno-giphy");
 
 export const getDatabase = () => {
   return db;
-}
+};

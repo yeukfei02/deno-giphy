@@ -52,7 +52,10 @@ export const login = async (context: any) => {
     const user = await getUserByEmailModel(email);
     if (user) {
       const hashedPasswordFromDB = user.password;
-      const comparePasswordStatus = bcrypt.checkpw(password, hashedPasswordFromDB);
+      const comparePasswordStatus = bcrypt.checkpw(
+        password,
+        hashedPasswordFromDB,
+      );
       if (comparePasswordStatus) {
         const token = await getToken(email, password);
 

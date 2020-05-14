@@ -8,29 +8,23 @@ const randomGifs = db.collection("randomGifs");
 export const addGifsModel = async () => {
   let result = "";
 
-  result = await gifs.insertOne({
-
-  });
+  result = await gifs.insertOne({});
 
   return result;
-}
+};
 
 export const addTrendingGifModel = async () => {
   let result = "";
 
-  result = await trendingGifs.insertOne({
-
-  });
+  result = await trendingGifs.insertOne({});
 
   return result;
-}
+};
 
 export const addTrendingGifsModel = async () => {
   let result = "";
 
-  result = await randomGifs.insertOne({
-
-  });
+  result = await randomGifs.insertOne({});
 
   return result;
-}
+};

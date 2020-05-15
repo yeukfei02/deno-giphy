@@ -2,6 +2,8 @@
 
 deno-giphy
 
+documentation: https://documenter.getpostman.com/view/3827865/Szmjyv1c?version=latest
+
 ## Requirement:
  - install deno (1.0.0)
 

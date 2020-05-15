@@ -213,7 +213,7 @@
 							}
 						],
 						"url": {
-							"raw": "localhost:3000/api/giphy/gif/W3OY4DShaylhQyPMMW",
+							"raw": "localhost:3000/api/giphy/gif/RgiBXfi2RAODKV3DKv",
 							"host": [
 								"localhost"
 							],
@@ -222,7 +222,7 @@
 								"api",
 								"giphy",
 								"gif",
-								"W3OY4DShaylhQyPMMW"
+								"RgiBXfi2RAODKV3DKv"
 							]
 						},
 						"description": "/giphy/gif/{id}"

@@ -6,6 +6,7 @@ documentation: https://documenter.getpostman.com/view/3827865/Szmjyv1c?version=l
 
 ## Requirement:
  - install deno (1.0.0)
+ - install mongodb
 
 ## Testing and run:
 ```

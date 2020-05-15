@@ -4,6 +4,8 @@ import {
   addTrendingGifsModel,
   addRandomGifsModel,
   getGifByIdModel,
+  getTrendingGifByIdModel,
+  getRandomGifByIdModel
 } from "../model/giphy.ts";
 import { checkUserLogin } from "../common/common.ts";
 
@@ -22,7 +24,14 @@ export const searchGif = async (context: any) => {
       if (response) {
         responseJSON = await response.json();
         if (responseJSON && responseJSON.data) {
-          await addGifsModel(responseJSON.data);
+          for (let i = 0; i < responseJSON.data.length; i++) {
+            const item = responseJSON.data[i];
+            const id = item.id;
+            const existingGif = await getGifByIdModel(id);
+            if (!existingGif) {
+              await addGifsModel(responseJSON.data);
+            }
+          }
         }
       } else {
 
@@ -53,7 +62,14 @@ export const getTrendingGif = async (context: any) => {
     if (response) {
       responseJSON = await response.json();
       if (responseJSON && responseJSON.data) {
-        await addTrendingGifsModel(responseJSON.data);
+        for (let i = 0; i < responseJSON.data.length; i++) {
+          const item = responseJSON.data[i];
+          const id = item.id;
+          const existingTrendingGif = await getTrendingGifByIdModel(id);
+          if (!existingTrendingGif) {
+            await addTrendingGifsModel(responseJSON.data);
+          }
+        }
       }
     }
 
@@ -81,7 +97,11 @@ export const getRandomGif = async (context: any) => {
     if (response) {
       responseJSON = await response.json();
       if (responseJSON && responseJSON.data) {
-        await addRandomGifsModel(responseJSON.data);
+        const id = responseJSON.data.id;
+        const existingRandomGif = await getRandomGifByIdModel(id);
+        if (!existingRandomGif) {
+          await addRandomGifsModel(responseJSON.data);
+        }
       }
     }
 

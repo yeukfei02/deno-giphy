@@ -39,3 +39,13 @@ export const getGifByIdModel = async (id: string) => {
   const result = await gifs.findOne({ id: id });
   return result;
 };
+
+export const getTrendingGifByIdModel = async (id: string) => {
+  const result = await trendingGifs.findOne({ id: id });
+  return result;
+};
+
+export const getRandomGifByIdModel = async (id: string) => {
+  const result = await randomGifs.findOne({ id: id });
+  return result;
+};

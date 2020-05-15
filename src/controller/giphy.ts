@@ -5,7 +5,7 @@ import {
   addRandomGifsModel,
   getGifByIdModel,
   getTrendingGifByIdModel,
-  getRandomGifByIdModel
+  getRandomGifByIdModel,
 } from "../model/giphy.ts";
 import { checkUserLogin } from "../common/common.ts";
 
@@ -34,7 +34,6 @@ export const searchGif = async (context: any) => {
           }
         }
       } else {
-
       }
     }
 

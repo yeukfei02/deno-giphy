@@ -19,7 +19,7 @@ $ deno run --allow-net --allow-read --allow-write --allow-plugin --unstable serv
 $ deno run -A server.ts
 
 // run test case
-$ deno test
+$ deno test --allow-net --allow-read --allow-write --allow-plugin --unstable
 
 // format code
 $ deno fmt

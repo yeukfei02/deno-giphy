@@ -10,3 +10,10 @@ services:
       - .:/app
     ports:
       - 3000:3000
+    links:
+      - db
+  db:
+    container_name: mongo
+    image: mongo:4.2
+    ports:
+      - 27017:27017

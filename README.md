@@ -17,7 +17,7 @@ $ deno cache --unstable server.ts
 $ deno run --allow-net --allow-read --allow-write --allow-plugin --unstable server.ts
 
 // allow all permission
-$ deno run -A server.ts
+$ deno run -A --unstable server.ts
 
 // run test case
 $ deno test --allow-net --allow-read --allow-write --allow-plugin --unstable

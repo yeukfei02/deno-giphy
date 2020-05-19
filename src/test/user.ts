@@ -16,7 +16,7 @@ import {
 
 const uuid = v4.generate();
 const email = `${uuid}@test.com`;
-const password = bcrypt.hashpw("test");
+const password = bcrypt.hashSync("test");
 
 export const signupTest = async () => {
   let result = null;
@@ -35,7 +35,7 @@ export const loginTest = async () => {
   const user = await getUserByEmailModel(email);
   if (user) {
     const hashedPasswordFromDB = password;
-    const comparePasswordStatus = bcrypt.checkpw(
+    const comparePasswordStatus = bcrypt.compareSync(
       "test",
       hashedPasswordFromDB,
     );

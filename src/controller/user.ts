@@ -17,7 +17,7 @@ import { checkUserLogin } from "../common/common.ts";
 export const signup = async (context: any) => {
   const bodyData = await context.request.body();
   const email = bodyData.value.email;
-  const password = bcrypt.hashpw(bodyData.value.password);
+  const password = bcrypt.hashSync(bodyData.value.password);
 
   if (email && password) {
     const user = await getUserByEmailModel(email);
@@ -52,7 +52,7 @@ export const login = async (context: any) => {
     const user = await getUserByEmailModel(email);
     if (user) {
       const hashedPasswordFromDB = user.password;
-      const comparePasswordStatus = bcrypt.checkpw(
+      const comparePasswordStatus = bcrypt.compareSync(
         password,
         hashedPasswordFromDB,
       );

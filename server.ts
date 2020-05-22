@@ -1,4 +1,5 @@
 import { Application } from "https://deno.land/x/oak/mod.ts";
+import { oakCors } from "https://deno.land/x/cors/mod.ts";
 
 import mainRouter from "./src/routes/main.ts";
 import userRouter from "./src/routes/user.ts";
@@ -20,6 +21,9 @@ app.use(async (context: any, next: any) => {
   const ms = Date.now() - start;
   context.response.headers.set("X-Response-Time", `${ms}ms`);
 });
+
+// cors
+app.use(oakCors());
 
 // main routes
 app.use(mainRouter.routes());

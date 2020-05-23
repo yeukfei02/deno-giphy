@@ -1,10 +1,10 @@
 import { Router } from "https://deno.land/x/oak/mod.ts";
 
-import { signup, login, getAllUser } from "../controller/user.ts";
+import * as userController from "../controller/user.ts";
 
 const router = new Router();
-router.post("/api/user/signup", signup);
-router.post("/api/user/login", login);
-router.get("/api/user", getAllUser);
+router.post("/api/user/signup", userController.signup);
+router.post("/api/user/login", userController.login);
+router.get("/api/user", userController.getAllUser);
 
 export default router;

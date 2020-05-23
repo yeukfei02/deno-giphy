@@ -5,21 +5,21 @@ const gifs = db.collection("gifs");
 const trendingGifs = db.collection("trendingGifs");
 const randomGifs = db.collection("randomGifs");
 
-export const addGifsModel = async (data: any[]) => {
+export const addGifsModel = async (data: any) => {
   let result = "";
 
   if (data) {
-    result = await gifs.insertMany(data);
+    result = await gifs.insertOne(data);
   }
 
   return result;
 };
 
-export const addTrendingGifsModel = async (data: any[]) => {
+export const addTrendingGifsModel = async (data: any) => {
   let result = "";
 
   if (data) {
-    result = await trendingGifs.insertMany(data);
+    result = await trendingGifs.insertOne(data);
   }
 
   return result;

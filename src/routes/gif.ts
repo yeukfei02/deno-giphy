@@ -5,7 +5,7 @@ import {
   getTrendingGif,
   getRandomGif,
   getGifById,
-} from "../controller/giphy.ts";
+} from "../controller/gif.ts";
 
 const router = new Router();
 router.get("/api/giphy/search-gif", searchGif);

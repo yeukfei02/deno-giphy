@@ -3,7 +3,8 @@ import { oakCors } from "https://deno.land/x/cors/mod.ts";
 
 import mainRouter from "./src/routes/main.ts";
 import userRouter from "./src/routes/user.ts";
-import giphyRouter from "./src/routes/giphy.ts";
+import gifRouter from "./src/routes/gif.ts";
+import stickerRouter from "./src/routes/sticker.ts";
 
 const app = new Application();
 
@@ -33,9 +34,13 @@ app.use(mainRouter.allowedMethods());
 app.use(userRouter.routes());
 app.use(userRouter.allowedMethods());
 
-// giphy routes
-app.use(giphyRouter.routes());
-app.use(giphyRouter.allowedMethods());
+// gif routes
+app.use(gifRouter.routes());
+app.use(gifRouter.allowedMethods());
+
+// sticker routes
+app.use(stickerRouter.routes());
+app.use(stickerRouter.allowedMethods());
 
 console.log(`server is running at port 3000`);
 await app.listen({ port: 3000 });

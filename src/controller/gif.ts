@@ -1,4 +1,5 @@
 import { config } from "https://deno.land/x/dotenv/mod.ts";
+import * as giphy from "https://deno.land/x/deno_giphy_api/mod.ts";
 import {
   addGifsModel,
   addTrendingGifsModel,
@@ -6,7 +7,7 @@ import {
   getGifByIdModel,
   getTrendingGifByIdModel,
   getRandomGifByIdModel,
-} from "../model/giphy.ts";
+} from "../model/gif.ts";
 import { checkUserLogin } from "../common/common.ts";
 
 export const searchGif = async (context: any) => {
@@ -18,22 +19,23 @@ export const searchGif = async (context: any) => {
   const loginStatus = await checkUserLogin(context);
   if (loginStatus) {
     if (keyword) {
-      const response = await fetch(
-        `https://api.giphy.com/v1/gifs/search?api_key=${config().GIPHY_API_KEY}&q=${keyword}`,
-      );
+      const params = {
+        api_key: config().GIPHY_API_KEY,
+        q: keyword,
+      };
+      const response = await giphy.searchGif(params);
       if (response) {
-        responseJSON = await response.json();
-        if (responseJSON && responseJSON.data) {
+        responseJSON = response;
+        if (responseJSON) {
           for (let i = 0; i < responseJSON.data.length; i++) {
             const item = responseJSON.data[i];
             const id = item.id;
             const existingGif = await getGifByIdModel(id);
             if (!existingGif) {
-              await addGifsModel(responseJSON.data);
+              await addGifsModel(item);
             }
           }
         }
-      } else {
       }
     }
 
@@ -55,18 +57,19 @@ export const getTrendingGif = async (context: any) => {
 
   const loginStatus = await checkUserLogin(context);
   if (loginStatus) {
-    const response = await fetch(
-      `https://api.giphy.com/v1/gifs/trending?api_key=${config().GIPHY_API_KEY}`,
-    );
+    const params = {
+      api_key: config().GIPHY_API_KEY,
+    };
+    const response = await giphy.searchTrendingGif(params);
     if (response) {
-      responseJSON = await response.json();
-      if (responseJSON && responseJSON.data) {
+      responseJSON = response;
+      if (responseJSON) {
         for (let i = 0; i < responseJSON.data.length; i++) {
           const item = responseJSON.data[i];
           const id = item.id;
           const existingTrendingGif = await getTrendingGifByIdModel(id);
           if (!existingTrendingGif) {
-            await addTrendingGifsModel(responseJSON.data);
+            await addTrendingGifsModel(item);
           }
         }
       }
@@ -90,12 +93,13 @@ export const getRandomGif = async (context: any) => {
 
   const loginStatus = await checkUserLogin(context);
   if (loginStatus) {
-    const response = await fetch(
-      `https://api.giphy.com/v1/gifs/random?api_key=${config().GIPHY_API_KEY}`,
-    );
+    const params = {
+      api_key: config().GIPHY_API_KEY,
+    };
+    const response = await giphy.randomGif(params);
     if (response) {
-      responseJSON = await response.json();
-      if (responseJSON && responseJSON.data) {
+      responseJSON = response;
+      if (responseJSON) {
         const id = responseJSON.data.id;
         const existingRandomGif = await getRandomGifByIdModel(id);
         if (!existingRandomGif) {
@@ -125,11 +129,12 @@ export const getGifById = async (context: any) => {
   const loginStatus = await checkUserLogin(context);
   if (loginStatus) {
     if (id) {
-      const response = await fetch(
-        `https://api.giphy.com/v1/gifs/${id}?api_key=${config().GIPHY_API_KEY}`,
-      );
+      const params = {
+        api_key: config().GIPHY_API_KEY,
+      };
+      const response = await giphy.getGifById(id, params);
       if (response) {
-        responseJSON = await response.json();
+        responseJSON = response;
       } else {
         const formattedGif = await getGifByIdModel(id);
         if (formattedGif._id && formattedGif._id.$oid) {

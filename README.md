@@ -7,6 +7,7 @@ documentation: https://documenter.getpostman.com/view/3827865/Szmjyv1c?version=l
 ## Requirement:
  - install deno (1.0.0)
  - install mongodb
+ - install denon
 
 ## Testing and run:
 ```
@@ -15,6 +16,9 @@ $ deno cache --unstable server.ts
 
 // run in local
 $ deno run --allow-net --allow-read --allow-write --allow-plugin --unstable server.ts
+
+// use denon
+$ denon run --allow-net --allow-read --allow-write --allow-plugin --unstable server.ts
 
 // allow all permission
 $ deno run -A --unstable server.ts

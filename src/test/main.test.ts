@@ -5,7 +5,12 @@ import {
   getTrendingGifTest,
   getRandomGifTest,
   getGifByIdTest,
-} from "./giphy.ts";
+} from "./gif.ts";
+import {
+  searchStickerTest,
+  getTrendingStickerTest,
+  getRandomStickerTest,
+} from "./sticker.ts";
 
 Deno.test("signup", async () => {
   const result = await signupTest();
@@ -39,5 +44,20 @@ Deno.test("getRandomGif", async () => {
 
 Deno.test("getGifById", async () => {
   const result = await getGifByIdTest();
+  assert(result);
+});
+
+Deno.test("searchSticker", async () => {
+  const result = await searchStickerTest();
+  assert(result);
+});
+
+Deno.test("getTrendingSticker", async () => {
+  const result = await getTrendingStickerTest();
+  assert(result);
+});
+
+Deno.test("getRandomSticker", async () => {
+  const result = await getRandomStickerTest();
   assert(result);
 });

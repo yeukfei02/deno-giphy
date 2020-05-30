@@ -1,4 +1,4 @@
-FROM hayd/ubuntu-deno:1.0.0
+FROM hayd/ubuntu-deno:1.0.2
 
 RUN mkdir -p /app
 
@@ -10,4 +10,4 @@ RUN deno cache --unstable server.ts
 
 EXPOSE 3000
 
-CMD [ "run", "--allow-net", "--allow-read", "--allow-write", "--allow-plugin", "--unstable", "server.ts" ]
+CMD [ "run", "-A", "--unstable", "server.ts" ]

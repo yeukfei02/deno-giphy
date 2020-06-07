@@ -5,7 +5,7 @@ deno-giphy
 documentation: https://documenter.getpostman.com/view/3827865/Szmjyv1c?version=latest
 
 ## Requirement:
- - install deno (1.0.0)
+ - install deno (1.0.5)
  - install mongodb
  - install denon
 

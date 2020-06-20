@@ -9,7 +9,7 @@ export const checkUserLogin = async (context: any) => {
     const token = tokenStr.substring(7).trim();
     if (token) {
       const key = config().JWT_SECRET;
-      const valid = await validateJwt(token, key, { isThrowing: false });
+      const valid = await validateJwt(token, key);
       if (valid) {
         status = true;
       }

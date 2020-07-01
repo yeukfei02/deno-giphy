@@ -1,3 +1,4 @@
+import { Context } from "https://deno.land/x/oak/mod.ts";
 import {
   makeJwt,
   setExpiration,
@@ -12,10 +13,9 @@ import {
   getUserByEmailModel,
   getAllUserModel,
 } from "../model/user.ts";
-import { checkUserLogin } from "../common/common.ts";
 
-export const signup = async (context: any) => {
-  const bodyData = await context.request.body();
+export const signup = async (ctx: Context) => {
+  const bodyData = await ctx.request.body();
   const email = bodyData.value.email;
   const password = bcrypt.hashSync(bodyData.value.password);
 
@@ -24,27 +24,27 @@ export const signup = async (context: any) => {
     if (!user) {
       const result = await signupModel(email, password);
       if (result) {
-        context.response.status = 200;
-        context.response.body = {
+        ctx.response.status = 200;
+        ctx.response.body = {
           message: "signup",
         };
       }
     } else {
-      context.response.status = 400;
-      context.response.body = {
+      ctx.response.status = 400;
+      ctx.response.body = {
         message: "signup error, email already exists",
       };
     }
   } else {
-    context.response.status = 400;
-    context.response.body = {
+    ctx.response.status = 400;
+    ctx.response.body = {
       message: "signup error, email and password cannot be empty",
     };
   }
 };
 
-export const login = async (context: any) => {
-  const bodyData = await context.request.body();
+export const login = async (ctx: Context) => {
+  const bodyData = await ctx.request.body();
   const email = bodyData.value.email;
   const password = bodyData.value.password;
 
@@ -59,61 +59,53 @@ export const login = async (context: any) => {
       if (comparePasswordStatus) {
         const token = await getToken(email, password);
 
-        context.response.status = 200;
-        context.response.body = {
+        ctx.response.status = 200;
+        ctx.response.body = {
           message: "login",
           token: token,
         };
       } else {
-        context.response.status = 400;
-        context.response.body = {
+        ctx.response.status = 400;
+        ctx.response.body = {
           message: "login error, password is not correct",
         };
       }
     } else {
-      context.response.status = 400;
-      context.response.body = {
+      ctx.response.status = 400;
+      ctx.response.body = {
         message: "login error, user not found",
       };
     }
   } else {
-    context.response.status = 400;
-    context.response.body = {
+    ctx.response.status = 400;
+    ctx.response.body = {
       message: "login error, email and password cannot be empty",
     };
   }
 };
 
-export const getAllUser = async (context: any) => {
+export const getAllUser = async (ctx: Context) => {
   let resultList = [];
 
-  const loginStatus = await checkUserLogin(context);
-  if (loginStatus) {
-    const usersList = await getAllUserModel();
-    if (usersList) {
-      resultList = usersList.map((item: any, i: number) => {
-        const _id = item._id.$oid;
+  const usersList = await getAllUserModel();
+  if (usersList) {
+    resultList = usersList.map((item: any, i: number) => {
+      const _id = item._id.$oid;
 
-        const obj = {
-          _id: _id,
-          email: item.email,
-          password: item.password,
-        };
-        return obj;
-      });
-    }
-
-    context.response.status = 200;
-    context.response.body = {
-      message: "get all user",
-      users: resultList,
-    };
-  } else {
-    context.response.status = 400;
-    context.response.body = {
-      message: "missing / invalid bearer token",
-    };
+      const obj = {
+        _id: _id,
+        email: item.email,
+        password: item.password,
+      };
+      return obj;
+    });
   }
+
+  ctx.response.status = 200;
+  ctx.response.body = {
+    message: "get all user",
+    users: resultList,
+  };
 };
 
 async function getToken(email: string, password: string) {

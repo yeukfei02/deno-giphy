@@ -1,4 +1,4 @@
-import { Application } from "https://deno.land/x/oak/mod.ts";
+import { Application, Context } from "https://deno.land/x/oak/mod.ts";
 import { oakCors } from "https://deno.land/x/cors/mod.ts";
 
 import mainRouter from "./src/routes/main.ts";
@@ -9,18 +9,18 @@ import stickerRouter from "./src/routes/sticker.ts";
 const app = new Application();
 
 // logger
-app.use(async (context: any, next: any) => {
+app.use(async (ctx: Context, next: any) => {
   await next();
-  const rt = context.response.headers.get("X-Response-Time");
-  console.log(`${context.request.method} ${context.request.url} - ${rt}`);
+  const rt = ctx.response.headers.get("X-Response-Time");
+  console.log(`${ctx.request.method} ${ctx.request.url} - ${rt}`);
 });
 
 // request timing
-app.use(async (context: any, next: any) => {
+app.use(async (ctx: Context, next: any) => {
   const start = Date.now();
   await next();
   const ms = Date.now() - start;
-  context.response.headers.set("X-Response-Time", `${ms}ms`);
+  ctx.response.headers.set("X-Response-Time", `${ms}ms`);
 });
 
 // cors

@@ -23,7 +23,6 @@ app.use(async (ctx: Context, next: any) => {
   ctx.response.headers.set("X-Response-Time", `${ms}ms`);
 });
 
-// cors
 app.use(oakCors());
 
 // main routes

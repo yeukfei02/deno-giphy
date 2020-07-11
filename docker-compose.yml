@@ -10,7 +10,7 @@ services:
       - .:/app
     ports:
       - 3000:3000
-    links:
+    depends_on:
       - db
   db:
     container_name: mongo

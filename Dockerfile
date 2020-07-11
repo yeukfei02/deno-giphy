@@ -1,4 +1,4 @@
-FROM hayd/ubuntu-deno:1.1.0
+FROM hayd/ubuntu-deno:1.1.3
 
 RUN mkdir -p /app
 

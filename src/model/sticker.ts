@@ -6,7 +6,7 @@ const trendingStickers = db.collection("trendingStickers");
 const randomStickers = db.collection("randomStickers");
 
 export const addStickersModel = async (data: any) => {
-  let result = "";
+  let result = null;
 
   if (data) {
     result = await stickers.insertOne(data);
@@ -16,7 +16,7 @@ export const addStickersModel = async (data: any) => {
 };
 
 export const addTrendingStickersModel = async (data: any) => {
-  let result = "";
+  let result = null;
 
   if (data) {
     result = await trendingStickers.insertOne(data);
@@ -26,7 +26,7 @@ export const addTrendingStickersModel = async (data: any) => {
 };
 
 export const addRandomStickersModel = async (data: any) => {
-  let result = "";
+  let result = null;
 
   if (data) {
     result = await randomStickers.insertOne(data);

@@ -1,23 +1,24 @@
 import { Context } from "https://deno.land/x/oak/mod.ts";
 import {
-  makeJwt,
-  setExpiration,
   Jose,
+  makeJwt,
   Payload,
+  setExpiration,
 } from "https://deno.land/x/djwt/create.ts";
 import { config } from "https://deno.land/x/dotenv/mod.ts";
 import { moment } from "https://deno.land/x/moment/moment.ts";
 import * as bcrypt from "https://deno.land/x/bcrypt/mod.ts";
 import {
-  signupModel,
-  getUserByEmailModel,
   getAllUserModel,
+  getUserByEmailModel,
+  signupModel,
 } from "../model/user.ts";
 
 export const signup = async (ctx: Context) => {
   const bodyData = await ctx.request.body();
-  const email = bodyData.value.email;
-  const password = bcrypt.hashSync(bodyData.value.password);
+  const reqBody = await bodyData.value;
+  const email = reqBody.email;
+  const password = bcrypt.hashSync(reqBody.password);
 
   if (email && password) {
     const user = await getUserByEmailModel(email);
@@ -45,8 +46,9 @@ export const signup = async (ctx: Context) => {
 
 export const login = async (ctx: Context) => {
   const bodyData = await ctx.request.body();
-  const email = bodyData.value.email;
-  const password = bodyData.value.password;
+  const reqBody = await bodyData.value;
+  const email = reqBody.email;
+  const password = reqBody.password;
 
   if (email && password) {
     const user = await getUserByEmailModel(email);
@@ -85,7 +87,7 @@ export const login = async (ctx: Context) => {
 };
 
 export const getAllUser = async (ctx: Context) => {
-  let resultList = [];
+  let resultList: any[] = [];
 
   const usersList = await getAllUserModel();
   if (usersList) {

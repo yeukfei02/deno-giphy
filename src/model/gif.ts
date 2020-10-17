@@ -6,7 +6,7 @@ const trendingGifs = db.collection("trendingGifs");
 const randomGifs = db.collection("randomGifs");
 
 export const addGifsModel = async (data: any) => {
-  let result = "";
+  let result = null;
 
   if (data) {
     result = await gifs.insertOne(data);
@@ -16,7 +16,7 @@ export const addGifsModel = async (data: any) => {
 };
 
 export const addTrendingGifsModel = async (data: any) => {
-  let result = "";
+  let result = null;
 
   if (data) {
     result = await trendingGifs.insertOne(data);
@@ -26,7 +26,7 @@ export const addTrendingGifsModel = async (data: any) => {
 };
 
 export const addRandomGifsModel = async (data: any) => {
-  let result = "";
+  let result = null;
 
   if (data) {
     result = await randomGifs.insertOne(data);

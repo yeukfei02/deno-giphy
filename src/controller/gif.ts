@@ -3,16 +3,15 @@ import { config } from "https://deno.land/x/dotenv/mod.ts";
 import * as giphy from "https://deno.land/x/deno_giphy_api/mod.ts";
 import {
   addGifsModel,
-  addTrendingGifsModel,
   addRandomGifsModel,
+  addTrendingGifsModel,
   getGifByIdModel,
-  getTrendingGifByIdModel,
   getRandomGifByIdModel,
+  getTrendingGifByIdModel,
 } from "../model/gif.ts";
 
 export const searchGif = async (ctx: Context) => {
-  const urlSearchParams = new URLSearchParams(ctx.request.url.searchParams);
-  const keyword = urlSearchParams.get("keyword");
+  const keyword = ctx.request.url.searchParams.get("keyword");
 
   let responseJSON: any = null;
 
@@ -111,8 +110,8 @@ export const getGifById = async (ctx: any) => {
       responseJSON = response;
     } else {
       const formattedGif = await getGifByIdModel(id);
-      if (formattedGif._id && formattedGif._id.$oid) {
-        formattedGif._id = formattedGif._id.$oid;
+      if (formattedGif && formattedGif._id && formattedGif._id.$oid) {
+        formattedGif._id = formattedGif._id.$oid as any;
       }
       responseJSON = formattedGif;
     }

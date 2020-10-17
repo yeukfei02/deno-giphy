@@ -1,5 +1,7 @@
 import { Application, Context } from "https://deno.land/x/oak/mod.ts";
 import { oakCors } from "https://deno.land/x/cors/mod.ts";
+import { Snelm } from "https://deno.land/x/snelm/mod.ts";
+import { organ } from "https://raw.githubusercontent.com/denjucks/organ/master/mod.ts";
 
 import mainRouter from "./src/routes/main.ts";
 import userRouter from "./src/routes/user.ts";
@@ -8,22 +10,14 @@ import stickerRouter from "./src/routes/sticker.ts";
 
 const app = new Application();
 
-// logger
-app.use(async (ctx: Context, next: any) => {
-  await next();
-  const rt = ctx.response.headers.get("X-Response-Time");
-  console.log(`${ctx.request.method} ${ctx.request.url} - ${rt}`);
-});
-
-// request timing
-app.use(async (ctx: Context, next: any) => {
-  const start = Date.now();
-  await next();
-  const ms = Date.now() - start;
-  ctx.response.headers.set("X-Response-Time", `${ms}ms`);
-});
+const snelm = new Snelm("oak");
 
 app.use(oakCors());
+app.use(async (ctx: Context, next: any) => {
+  ctx.response = snelm.snelm(ctx.request, ctx.response);
+  await next();
+});
+app.use(organ());
 
 // main routes
 app.use(mainRouter.routes());

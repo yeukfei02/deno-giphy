@@ -1,17 +1,17 @@
 import {
-  makeJwt,
-  setExpiration,
   Jose,
+  makeJwt,
   Payload,
+  setExpiration,
 } from "https://deno.land/x/djwt/create.ts";
 import { config } from "https://deno.land/x/dotenv/mod.ts";
 import { moment } from "https://deno.land/x/moment/moment.ts";
 import * as bcrypt from "https://deno.land/x/bcrypt/mod.ts";
 import { v4 } from "https://deno.land/std/uuid/mod.ts";
 import {
-  signupModel,
-  getUserByEmailModel,
   getAllUserModel,
+  getUserByEmailModel,
+  signupModel,
 } from "../model/user.ts";
 
 const uuid = v4.generate();

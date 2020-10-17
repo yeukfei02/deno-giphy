@@ -4,7 +4,7 @@ import { config } from "https://deno.land/x/dotenv/mod.ts";
 
 export const isUserLoggedIn = async (
   ctx: Context,
-  next: () => Promise<any>
+  next: () => Promise<any>,
 ) => {
   try {
     const tokenStr = ctx.request.headers.get("authorization");

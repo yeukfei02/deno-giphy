@@ -28,6 +28,9 @@ $ deno run -A --unstable server.ts
 // run test case
 $ deno test --allow-net --allow-read --allow-write --allow-plugin --unstable
 
+// linter
+$ deno lint --unstable
+
 // format code
 $ deno fmt
 ```

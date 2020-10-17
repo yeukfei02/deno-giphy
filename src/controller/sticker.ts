@@ -2,17 +2,16 @@ import { Context } from "https://deno.land/x/oak/mod.ts";
 import { config } from "https://deno.land/x/dotenv/mod.ts";
 import * as giphy from "https://deno.land/x/deno_giphy_api/mod.ts";
 import {
+  addRandomStickersModel,
   addStickersModel,
   addTrendingStickersModel,
-  addRandomStickersModel,
+  getRandomStickerByIdModel,
   getStickerByIdModel,
   getTrendingStickerByIdModel,
-  getRandomStickerByIdModel,
 } from "../model/sticker.ts";
 
 export const searchSticker = async (ctx: Context) => {
-  const urlSearchParams = new URLSearchParams(ctx.request.url.searchParams);
-  const keyword = urlSearchParams.get("keyword");
+  const keyword = ctx.request.url.searchParams.get("keyword");
 
   let responseJSON: any = null;
 

@@ -12,8 +12,12 @@ export const isUserLoggedIn = async (
       const token = tokenStr.substring(7).trim();
       if (token) {
         const key = config().JWT_SECRET;
-        const valid = await validateJwt(token, key);
-        if (valid) {
+        const result = await validateJwt({
+          jwt: token,
+          key: key,
+          algorithm: "HS256",
+        });
+        if (result.isValid) {
           await next();
         }
       }

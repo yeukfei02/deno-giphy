@@ -1,15 +1,15 @@
 import { assert } from "https://deno.land/std/testing/asserts.ts";
-import { signupTest, loginTest, getAllUserTest } from "./user.ts";
+import { getAllUserTest, loginTest, signupTest } from "./user.ts";
 import {
-  searchGifTest,
-  getTrendingGifTest,
-  getRandomGifTest,
   getGifByIdTest,
+  getRandomGifTest,
+  getTrendingGifTest,
+  searchGifTest,
 } from "./gif.ts";
 import {
-  searchStickerTest,
-  getTrendingStickerTest,
   getRandomStickerTest,
+  getTrendingStickerTest,
+  searchStickerTest,
 } from "./sticker.ts";
 
 Deno.test("signup", async () => {

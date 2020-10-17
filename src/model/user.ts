@@ -4,7 +4,7 @@ const db = getDatabase();
 const users = db.collection("users");
 
 export const signupModel = async (email: string, password: string) => {
-  let result = "";
+  let result = null;
 
   if (email && password) {
     result = await users.insertOne({

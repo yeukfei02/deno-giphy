@@ -12,6 +12,7 @@ const app = new Application();
 
 const snelm = new Snelm("oak");
 
+// middleware
 app.use(oakCors());
 app.use(async (ctx: Context, next: any) => {
   ctx.response = snelm.snelm(ctx.request, ctx.response);

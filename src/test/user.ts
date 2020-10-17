@@ -3,7 +3,7 @@ import {
   makeJwt,
   Payload,
   setExpiration,
-} from "https://deno.land/x/djwt/create.ts";
+} from "https://deno.land/x/djwt@v1.7/create.ts";
 import { config } from "https://deno.land/x/dotenv/mod.ts";
 import { moment } from "https://deno.land/x/moment/moment.ts";
 import * as bcrypt from "https://deno.land/x/bcrypt/mod.ts";
@@ -37,7 +37,7 @@ export const loginTest = async () => {
     const hashedPasswordFromDB = password;
     const comparePasswordStatus = bcrypt.compareSync(
       "test",
-      hashedPasswordFromDB,
+      hashedPasswordFromDB
     );
     if (comparePasswordStatus) {
       token = await getToken(email, password);

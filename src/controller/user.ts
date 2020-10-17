@@ -56,7 +56,7 @@ export const login = async (ctx: Context) => {
       const hashedPasswordFromDB = user.password;
       const comparePasswordStatus = bcrypt.compareSync(
         password,
-        hashedPasswordFromDB
+        hashedPasswordFromDB,
       );
       if (comparePasswordStatus) {
         const token = await getToken(email, password);

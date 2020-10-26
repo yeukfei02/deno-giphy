@@ -1,6 +1,6 @@
 import { Application, Context } from "https://deno.land/x/oak/mod.ts";
 import { oakCors } from "https://deno.land/x/cors/mod.ts";
-import { Snelm } from "https://deno.land/x/snelm/mod.ts";
+// import { Snelm } from "https://deno.land/x/snelm/mod.ts";
 import { organ } from "https://raw.githubusercontent.com/denjucks/organ/master/mod.ts";
 
 import mainRouter from "./src/routes/main.ts";
@@ -10,14 +10,14 @@ import stickerRouter from "./src/routes/sticker.ts";
 
 const app = new Application();
 
-const snelm = new Snelm("oak");
+// const snelm = new Snelm("oak");
 
 // middleware
 app.use(oakCors());
-app.use(async (ctx: Context, next: any) => {
-  ctx.response = snelm.snelm(ctx.request, ctx.response);
-  await next();
-});
+// app.use(async (ctx: Context, next: any) => {
+//   ctx.response = snelm.snelm(ctx.request, ctx.response);
+//   await next();
+// });
 app.use(organ());
 
 // main routes

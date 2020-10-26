@@ -1,13 +1,6 @@
-import {
-  Jose,
-  makeJwt,
-  Payload,
-  setExpiration,
-} from "https://deno.land/x/djwt@v1.7/create.ts";
-import { config } from "https://deno.land/x/dotenv/mod.ts";
-import { moment } from "https://deno.land/x/moment/moment.ts";
 import * as bcrypt from "https://deno.land/x/bcrypt/mod.ts";
 import { v4 } from "https://deno.land/std/uuid/mod.ts";
+import { getToken } from "../common/common.ts";
 import {
   getAllUserModel,
   getUserByEmailModel,
@@ -66,22 +59,3 @@ export const getAllUserTest = async () => {
 
   return resultList;
 };
-
-async function getToken(email: string, password: string) {
-  const key = config().JWT_SECRET;
-  const currentDate = moment().format();
-  const expireTimeMs = moment(currentDate).add(1, "days").valueOf();
-
-  const payload: Payload = {
-    email: email,
-    password: password,
-    exp: setExpiration(expireTimeMs),
-  };
-  const header: Jose = {
-    alg: "HS256",
-    typ: "JWT",
-  };
-
-  const token = makeJwt({ header, payload, key });
-  return token;
-}

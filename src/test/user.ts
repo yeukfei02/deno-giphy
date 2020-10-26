@@ -30,7 +30,7 @@ export const loginTest = async () => {
     const hashedPasswordFromDB = password;
     const comparePasswordStatus = bcrypt.compareSync(
       "test",
-      hashedPasswordFromDB
+      hashedPasswordFromDB,
     );
     if (comparePasswordStatus) {
       token = await getToken(email, password);

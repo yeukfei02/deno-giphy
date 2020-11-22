@@ -17,16 +17,16 @@ documentation: https://documenter.getpostman.com/view/3827865/Szmjyv1c?version=l
 $ deno cache --unstable server.ts
 
 // run in local
-$ deno run --allow-net --allow-read --allow-write --allow-plugin --unstable server.ts
+$ deno run --allow-net --allow-read --allow-write --allow-plugin --allow-env --unstable server.ts
 
 // use denon
-$ denon run --allow-net --allow-read --allow-write --allow-plugin --unstable server.ts
+$ denon run --allow-net --allow-read --allow-write --allow-plugin --allow-env --unstable server.ts
 
 // allow all permission
 $ deno run -A --unstable server.ts
 
 // run test case
-$ deno test --allow-net --allow-read --allow-write --allow-plugin --unstable
+$ deno test --allow-net --allow-read --allow-write --allow-plugin --allow-env --unstable
 
 // linter
 $ deno lint --unstable

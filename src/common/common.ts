@@ -5,7 +5,7 @@ import {
   setExpiration,
 } from "https://deno.land/x/djwt@v1.7/create.ts";
 import { config } from "https://deno.land/x/dotenv/mod.ts";
-import { moment } from "https://deno.land/x/moment/moment.ts";
+import moment from "https://cdn.skypack.dev/moment";
 
 export const getToken = async (email: string, password: string) => {
   const key = config().JWT_SECRET;

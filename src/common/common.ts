@@ -8,19 +8,21 @@ import { config } from "https://deno.land/x/dotenv/mod.ts";
 import moment from "https://cdn.skypack.dev/moment";
 
 export const getToken = async (email: string, password: string) => {
-  const key = config().JWT_SECRET;
   const currentDate = moment().format();
   const expireTimeMs = moment(currentDate).add(1, "days").valueOf();
+
+  const header: Jose = {
+    alg: "HS256",
+    typ: "JWT",
+  };
 
   const payload: Payload = {
     email: email,
     password: password,
     exp: setExpiration(expireTimeMs),
   };
-  const header: Jose = {
-    alg: "HS256",
-    typ: "JWT",
-  };
+
+  const key = config().JWT_SECRET;
 
   const token = makeJwt({ header, payload, key });
   return token;

@@ -2,17 +2,17 @@
 
 deno-giphy
 
-documentation: https://documenter.getpostman.com/view/3827865/Szmjyv1c?version=latest
+documentation: <https://documenter.getpostman.com/view/3827865/Szmjyv1c?version=latest>
 
-## Requirement:
+## Requirement
 
 - install deno
 - install mongodb
 - install denon
 
-## Testing and run:
+## Testing and run
 
-```
+```zsh
 // install deps
 $ deno cache --unstable server.ts
 
@@ -35,9 +35,9 @@ $ deno lint --unstable
 $ deno fmt
 ```
 
-## Docker:
+## Docker
 
-```
+```zsh
 // build images and start container in one line
 docker-compose up -d --build
 
